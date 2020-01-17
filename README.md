@@ -21,3 +21,17 @@ Name              | Description                                                 
 `marker` | marker of blockdiag block | ```
 
 ## Runkit Example
+* https://runkit.com/embed/ipf2hefq19mn
+
+## Use demo.html
+
+* Use oneliner HTTP server on Project root directory.
+
+```
+$ npx http-server
+or
+$ npm install -D http-server
+$ ./node_modules/.bin/http-server
+```
+
+* View http://127.0.0.1:8080/demo.html
