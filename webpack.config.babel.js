@@ -8,7 +8,8 @@ const config = {
     filename: 'markdown-it-drawio-viewer.js',
     library: 'MarkdownItDrawioViewer',
     libraryTarget: 'umd',
-    umdNamedDefine: true
+    umdNamedDefine: true,
+    globalObject: 'this'
   },
   module: {
     rules: [
