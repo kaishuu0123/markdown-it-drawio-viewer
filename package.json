@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-drawio-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/kaishuu0123/markdown-it-drawio-viewer.git",
   "description": "drawio plugin for markdown-it.",
   "license": "MIT",
