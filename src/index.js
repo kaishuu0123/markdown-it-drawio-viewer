@@ -2,6 +2,22 @@
 
 import markdownitfence from 'markdown-it-fence'
 
+const escapeHTML = (string) => {
+  if(typeof string !== 'string') {
+    return string;
+  }
+  return string.replace(/[&'`"<>]/g, function(match) {
+    return {
+      '&': '&amp;',
+      "'": '&#x27;',
+      '`': '&#x60;',
+      '"': '&quot;',
+      '<': '&lt;',
+      '>': '&gt;',
+    }[match]
+  });
+}
+
 const drawioViewerDefaultURL = () => {
   return '//www.draw.io/js/viewer.min.js'
 }
@@ -11,15 +27,6 @@ const render = (code, drawioViewerURL, idx) => {
   if (!trimedCode) {
     return ''
   }
-
-  let rootDiv = document.createElement('div')
-  rootDiv.class = `drawio-viewer-${idx} markdownItDrawioViewer`
-
-  let drawioDiv = document.createElement('div')
-  drawioDiv.classList.add('mxgraph')
-  drawioDiv.style.maxWidth = '100%'
-  drawioDiv.style.border = '1px solid transparent'
-
   let mxGraphData = {
     editable: false,
     highlight: '#0000ff',
@@ -30,21 +37,15 @@ const render = (code, drawioViewerURL, idx) => {
     xml: code
   }
 
-  const escapedData = JSON.stringify(mxGraphData)
+  const json = JSON.stringify(mxGraphData)
 
-  drawioDiv.setAttribute(
-    'data-mxgraph',
-    escapedData
-  )
-
-  let drawioScript = document.createElement('script');
-  drawioScript.type = 'text/javascript'
-  drawioScript.src = drawioViewerURL
-
-  rootDiv.appendChild(drawioDiv)
-  rootDiv.appendChild(drawioScript)
-
-  return rootDiv.outerHTML
+  return `
+<div class="drawio-viewer-index-${idx} markdownItDrawioViewer">
+  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}">
+  </div>
+  <script type="text/javascript" src="${drawioViewerURL}" />
+</div>
+`
 }
 
 const DrawioViewerRender = (drawioViewerURL) => {

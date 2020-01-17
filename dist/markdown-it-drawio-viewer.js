@@ -107,6 +107,22 @@ var _markdownItFence2 = _interopRequireDefault(_markdownItFence);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var escapeHTML = function escapeHTML(string) {
+  if (typeof string !== 'string') {
+    return string;
+  }
+  return string.replace(/[&'`"<>]/g, function (match) {
+    return {
+      '&': '&amp;',
+      "'": '&#x27;',
+      '`': '&#x60;',
+      '"': '&quot;',
+      '<': '&lt;',
+      '>': '&gt;'
+    }[match];
+  });
+};
+
 var drawioViewerDefaultURL = function drawioViewerDefaultURL() {
   return '//www.draw.io/js/viewer.min.js';
 };
@@ -116,15 +132,6 @@ var render = function render(code, drawioViewerURL, idx) {
   if (!trimedCode) {
     return '';
   }
-
-  var rootDiv = document.createElement('div');
-  rootDiv.class = 'drawio-viewer-' + idx + ' markdownItDrawioViewer';
-
-  var drawioDiv = document.createElement('div');
-  drawioDiv.classList.add('mxgraph');
-  drawioDiv.style.maxWidth = '100%';
-  drawioDiv.style.border = '1px solid transparent';
-
   var mxGraphData = {
     editable: false,
     highlight: '#0000ff',
@@ -135,18 +142,9 @@ var render = function render(code, drawioViewerURL, idx) {
     xml: code
   };
 
-  var escapedData = JSON.stringify(mxGraphData);
+  var json = JSON.stringify(mxGraphData);
 
-  drawioDiv.setAttribute('data-mxgraph', escapedData);
-
-  var drawioScript = document.createElement('script');
-  drawioScript.type = 'text/javascript';
-  drawioScript.src = drawioViewerURL;
-
-  rootDiv.appendChild(drawioDiv);
-  rootDiv.appendChild(drawioScript);
-
-  return rootDiv.outerHTML;
+  return '\n<div class="drawio-viewer-index-' + idx + ' markdownItDrawioViewer">\n  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="' + escapeHTML(json) + '">\n  </div>\n  <script type="text/javascript" src="' + drawioViewerURL + '" />\n</div>\n';
 };
 
 var DrawioViewerRender = function DrawioViewerRender(drawioViewerURL) {
