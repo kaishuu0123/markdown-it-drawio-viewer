@@ -18,7 +18,7 @@ npm install --save markdown-it-drawio-viewer
 * Make sure to include A somewhere in the HTML
 
 ```html
-<script type="text/javascript" src="//www.draw.io/js/viewer.min.js" />
+<script type="text/javascript" src="//www.draw.io/js/viewer.min.js"></script>
 ```
 
 `//www.draw.io/js/viewer.min.js` can be any URL as long as it is drawio's viewer.min.js
