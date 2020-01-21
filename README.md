@@ -13,11 +13,20 @@ npm install --save markdown-it-drawio-viewer
     .use(require('markdown-it-drawio-viewer'), opts)
 ```
 
+**Important**
+
+* Make sure to include A somewhere in the HTML
+
+```html
+<script type="text/javascript" src="//www.draw.io/js/viewer.min.js" />
+```
+
+`//www.draw.io/js/viewer.min.js` can be any URL as long as it is drawio's viewer.min.js
+
 The `opts` object can contain:
 
 Name              | Description                                                    | Default
 ------------------|----------------------------------------------------------------|-----------------------------------
-`drawioViewerURL` | draw.io viewer JS URL | //www.draw.io/js/viewer.min.js
 `marker` | marker of blockdiag block | ```
 
 ## Runkit Example

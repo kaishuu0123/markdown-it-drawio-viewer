@@ -1,5 +1,6 @@
 'use strict'
 
+import { validateDrawioData } from './drawioUtils'
 import markdownitfence from 'markdown-it-fence'
 
 const escapeHTML = (string) => {
@@ -18,15 +19,22 @@ const escapeHTML = (string) => {
   });
 }
 
-const drawioViewerDefaultURL = () => {
-  return '//www.draw.io/js/viewer.min.js'
-}
-
-const render = (code, drawioViewerURL, idx) => {
+const render = (code, idx) => {
   let trimedCode = code.trim()
   if (!trimedCode) {
     return ''
   }
+
+  try {
+    validateDrawioData(trimedCode)
+  } catch (e) {
+    return `
+<div class="drawio-viewer-index-${idx} markdownItDrawioViewer markdownItDrawioViewerError">
+  <p>Error: ${e}</p>
+</div>
+`;
+  }
+
   let mxGraphData = {
     editable: false,
     highlight: '#0000ff',
@@ -34,26 +42,29 @@ const render = (code, drawioViewerURL, idx) => {
     resize: true,
     toolbar: "zoom layers",
     edit: '_blank',
-    xml: code
+    xml: `
+      <mxfile version="6.8.9" editor="www.draw.io" type="atlas">
+        <mxAtlasLibraries/>
+        <diagram>${code}</diagram>
+      </mxfile>
+    `
   }
 
   const json = JSON.stringify(mxGraphData)
 
   return `
 <div class="drawio-viewer-index-${idx} markdownItDrawioViewer">
-  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}">
-  </div>
-  <script type="text/javascript" src="${drawioViewerURL}" />
+  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}" />
 </div>
-`
+`;
 }
 
-const DrawioViewerRender = (drawioViewerURL) => {
+const DrawioViewerRender = () => {
   return (tokens, idx, options, env) => {
     const token = tokens[idx]
     const diag_type = token.info.trim()
     const code = token.content.trim()
-    const renderStr = render(code, drawioViewerURL, idx)
+    const renderStr = render(code, idx)
     return renderStr
   }
 }
@@ -70,13 +81,12 @@ const MarkdownItDrawioViewerValidate = (params) => {
 const MarkdownItDrawioViewerPlugin = (md, options) => {
   options = options || {}
 
-  var drawioViewerURL = options.drawioViewerURL || drawioViewerDefaultURL()
   var render = options.render || md.renderer.rules.image
   var marker = options.marker || '```'
 
   return markdownitfence(md, 'drawio', {
     marker: marker,
-    render: DrawioViewerRender(drawioViewerURL),
+    render: DrawioViewerRender(),
     validate: MarkdownItDrawioViewerValidate,
   })
 }
