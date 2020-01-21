@@ -42,11 +42,12 @@ export const validateDrawioData = (data) =>  {
   }
 
   try {
-    if (window.atob) {
-      data = atob(data);
-    } else {
+    if (typeof window === 'undefined') {
       // Node.js
-      data = new Buffer(str, 'base64').toString('binary');
+      data = new Buffer(data, 'base64').toString('binary');
+    } else {
+      // Browser
+      data = atob(data);
     }
   } catch (e) {
     throw(`atob failed: ${e}`);

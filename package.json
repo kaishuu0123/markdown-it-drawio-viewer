@@ -24,7 +24,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.babel.js --progress --color",
     "test": "mocha --require intelli-espower-loader --require babel-register --require test/setup.js test/**/*.js",
-    "test:debug": "mocha --inspect-brk --require intelli-espower-loader --require babel-register --recursive test"
+    "test:debug": "mocha --inspect-brk -R --require intelli-espower-loader --require babel-register --recursive test"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
