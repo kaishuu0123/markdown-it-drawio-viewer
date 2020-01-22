@@ -1,5 +1,6 @@
 // copy from https://github.com/jgraph/drawio-tools/blob/master/tools/convert.html
 import pako from 'pako'
+import xmldoc from 'xmldoc'
 
 const bytesToString = (arr) => {
   var str = '';
@@ -9,34 +10,17 @@ const bytesToString = (arr) => {
   }
 
   return str;
-};
+}
 
-const parseXml = (xml) => {
-  if (window.DOMParser) {
-    var parser = new DOMParser();
-
-    return parser.parseFromString(xml, 'text/xml');
-  } else {
-    var result = createXmlDocument();
-
-    result.async = 'false';
-    result.loadXML(xml);
-
-    return result;
-  }
-};
+export const getTextContent = (node) => {
+  return (node != null) ? node[(node.textContent === undefined) ? 'text' : 'textContent'] : '';
+}
 
 export const validateDrawioData = (data) =>  {
   try {
-    var node = parseXml(data).documentElement;
-
-    if (node != null && node.nodeName == 'mxfile') {
-      var diagrams = node.getElementsByTagName('diagram');
-
-      if (diagrams.length > 0) {
-        data = getTextContent(diagrams[0]);
-      }
-    }
+    let doc = new xmldoc.XmlDocument(data);
+    let diagram = doc.valueWithPath('diagram');
+    data = diagram
   } catch (e) {
     // ignore
   }
@@ -68,4 +52,4 @@ export const validateDrawioData = (data) =>  {
   }
 
   return true;
-};
+}

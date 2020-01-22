@@ -1,6 +1,7 @@
 'use strict'
 
 import { validateDrawioData } from './drawioUtils'
+import xmldoc from 'xmldoc'
 import markdownitfence from 'markdown-it-fence'
 
 const escapeHTML = (string) => {
@@ -30,9 +31,27 @@ const render = (code, idx) => {
   } catch (e) {
     return `
 <div class="drawio-viewer-index-${idx} markdownItDrawioViewer markdownItDrawioViewerError">
-  <p>Error: ${e}</p>
+  <p>MarkdownItDrawioViewer Error: ${e}</p>
 </div>
 `;
+  }
+
+  let xml = null;
+  try {
+    // may be XML Format <mxfile><diagram> ... </diagram></mxfile>
+    let doc = new xmldoc.XmlDocument(trimedCode);
+    let diagram = doc.valueWithPath('diagram');
+    if (diagram) {
+      xml = trimedCode;
+    }
+  } catch (e) {
+    // may be NOT XML Format
+    xml = `
+<mxfile version="6.8.9" editor="www.draw.io" type="atlas">
+  <mxAtlasLibraries/>
+  <diagram>${trimedCode}</diagram>
+</mxfile>
+`
   }
 
   let mxGraphData = {
@@ -42,12 +61,7 @@ const render = (code, idx) => {
     resize: true,
     toolbar: "zoom layers",
     edit: '_blank',
-    xml: `
-      <mxfile version="6.8.9" editor="www.draw.io" type="atlas">
-        <mxAtlasLibraries/>
-        <diagram>${code}</diagram>
-      </mxfile>
-    `
+    xml: xml
   }
 
   const json = JSON.stringify(mxGraphData)

@@ -5,7 +5,9 @@ const config = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'markdown-it-drawio-viewer.js',
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'umd',
+    library: 'MarkdownItDrawioViewer',
+    globalObject: 'this'
   },
   module: {
     rules: [
