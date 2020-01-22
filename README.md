@@ -30,7 +30,7 @@ Name              | Description                                                 
 `marker` | marker of blockdiag block | ```
 
 ## Runkit Example
-* https://runkit.com/embed/qn4v9obx5eyr
+* https://runkit.com/embed/lskxy2qpfrj0
 
 ## Use demo.html
 
