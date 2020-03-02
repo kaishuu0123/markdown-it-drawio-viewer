@@ -57,10 +57,14 @@ const render = (code, idx) => {
   let mxGraphData = {
     editable: false,
     highlight: '#0000ff',
-    nav: true,
+    nav: false,
+    toolbar: null,
+    edit: null,
     resize: true,
-    toolbar: "zoom layers",
-    edit: '_blank',
+    lightbox: 'open',
+    // "check-visible-state": false,
+    // "auto-fit": false,
+    // move: false,
     xml: xml
   }
 
@@ -68,7 +72,7 @@ const render = (code, idx) => {
 
   return `
 <div class="drawio-viewer-index-${idx} markdownItDrawioViewer">
-  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}" />
+  <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}"></div>
 </div>
 `;
 }
