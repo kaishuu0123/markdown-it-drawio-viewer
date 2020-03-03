@@ -20,7 +20,7 @@ const escapeHTML = (string) => {
   });
 }
 
-const render = (code, idx) => {
+const render = (code, idx, range) => {
   let trimedCode = code.trim()
   if (!trimedCode) {
     return ''
@@ -71,7 +71,9 @@ const render = (code, idx) => {
   const json = JSON.stringify(mxGraphData)
 
   return `
-<div class="drawio-viewer-index-${idx} markdownItDrawioViewer">
+<div class="drawio-viewer-index-${idx} markdownItDrawioViewer"
+  data-begin-line-number-of-markdown="${range.beginLineNumber}"
+  data-end-line-number-of-markdown="${range.endLineNumber}">
   <div class="mxgraph" style="max-width: 100%; border: 1px solid transparent" data-mxgraph="${escapeHTML(json)}"></div>
 </div>
 `;
@@ -82,7 +84,11 @@ const DrawioViewerRender = () => {
     const token = tokens[idx]
     const diag_type = token.info.trim()
     const code = token.content.trim()
-    const renderStr = render(code, idx)
+    const range = {
+      beginLineNumber: token.map[0],
+      endLineNumber: token.map[1]
+    }
+    const renderStr = render(code, idx, range)
     return renderStr
   }
 }
