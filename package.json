@@ -45,7 +45,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "markdown-it-fence": "0.1.3",
+    "@kaishuu0123/markdown-it-fence": "^0.1.4",
     "xmldoc": "^1.1.2"
   }
 }

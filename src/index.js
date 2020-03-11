@@ -2,7 +2,7 @@
 
 import { validateDrawioData } from './drawioUtils'
 import xmldoc from 'xmldoc'
-import markdownitfence from 'markdown-it-fence'
+import markdownitfence from '@kaishuu0123/markdown-it-fence'
 
 const escapeHTML = (string) => {
   if(typeof string !== 'string') {

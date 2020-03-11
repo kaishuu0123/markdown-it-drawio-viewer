@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@kaishuu0123/markdown-it-fence@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@kaishuu0123/markdown-it-fence/-/markdown-it-fence-0.1.4.tgz#759cf0dd80cca23a08e70b9cbb33c999cb23f3c3"
+  integrity sha512-u00GhVLpTeIbeflMKCozzaCAEmuwGngryomtbsYoyRwdYLfrH2nJHZa41+gwKLXsrq7Ii3N+Rei5GHaqHT3j5A==
+
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -2915,11 +2920,6 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
-
-markdown-it-fence@0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/markdown-it-fence/-/markdown-it-fence-0.1.3.tgz#26e90149b7de5658cdb27096b2e2b5ec4e72d6ce"
-  integrity sha512-mdZbkwJUyZXhyDX4QzD+WnIhxWBq9oIIJU22E6jCT7MHgIp79oEOJfwXIl/HqmfIxnXEdC47sBGn4h6chM4DKw==
 
 markdown-it@^8.4.2:
   version "8.4.2"
