@@ -20,7 +20,10 @@ const config = {
       }
     ]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  // optimization: {
+  //   minimize: false
+  // }
 }
 
 export default config

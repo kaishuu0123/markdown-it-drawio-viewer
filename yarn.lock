@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@kaishuu0123/markdown-it-fence@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@kaishuu0123/markdown-it-fence/-/markdown-it-fence-0.2.0.tgz#f46722bfce4ab7eb3e051def5090dcae1bd6e36b"
-  integrity sha512-mdqKA+bXfJPl7gAg9tis8fGlea2oppBM068YbMDSXKWM6H18nVSZLrVKPHXpPWBgSv1ceeKkoWj8K1ntpIHlrw==
+"@kaishuu0123/markdown-it-fence@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@kaishuu0123/markdown-it-fence/-/markdown-it-fence-1.0.0.tgz#07525441b731e9ba518d886e203da2557e533f0e"
+  integrity sha512-4e+1JVCN3Qg2KvZkyvlmaay929bfeqf3MyA9agyx49gXKYhp5fvFQD0/0moBP52Kj/u0LCdVEnNWXn1s8Zi5sQ==
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"

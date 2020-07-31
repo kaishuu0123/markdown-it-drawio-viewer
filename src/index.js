@@ -93,25 +93,15 @@ const DrawioViewerRender = () => {
   }
 }
 
-const MarkdownItDrawioViewerValidate = (params) => {
-  const diag_types = [
-    'drawio'
-  ]
-
-  var type = params.trim().split(' ', 2)[0]
-  return diag_types.includes(type)
-}
-
 const MarkdownItDrawioViewerPlugin = (md, options) => {
   options = options || {}
 
   var render = options.render || md.renderer.rules.image
-  var marker = options.marker || '```'
+  var marker = options.marker || '`'
 
   return markdownitfence(md, 'drawio', {
     marker: marker,
-    render: DrawioViewerRender(),
-    validate: MarkdownItDrawioViewerValidate,
+    render: DrawioViewerRender()
   })
 }
 
