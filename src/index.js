@@ -61,7 +61,7 @@ const render = (code, idx, range) => {
     toolbar: null,
     edit: null,
     resize: true,
-    lightbox: 'open',
+    lightbox: 'false',
     // "check-visible-state": false,
     // "auto-fit": false,
     // move: false,
