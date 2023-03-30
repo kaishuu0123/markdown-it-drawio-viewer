@@ -38,7 +38,7 @@
     "http-server": "^0.12.1",
     "intelli-espower-loader": "^1.0.1",
     "markdown-it": "^8.4.2",
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "pako": "^1.0.10",
     "power-assert": "^1.6.1",
     "webpack": "^4.41.5",
