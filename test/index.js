@@ -37,3 +37,25 @@ aaa
   `);
   console.log(render_text);
 })
+
+it('drawio uncompressed render', () => {
+  var render_text = mdi.render(`hoge
+
+\`\`\` drawio
+<mxGraphModel dx="2042" dy="1155" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="160" y="150" width="120" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="320" y="150" width="120" height="60" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel>
+\`\`\`
+  `);
+
+  console.log(render_text);
+})

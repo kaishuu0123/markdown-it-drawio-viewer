@@ -16,7 +16,11 @@ export const getTextContent = (node) => {
   return (node != null) ? node[(node.textContent === undefined) ? 'text' : 'textContent'] : '';
 }
 
-export const validateDrawioData = (data) =>  {
+export const validateUncompressedDrawioData = (data) => {
+  return new RegExp('/<mxGraphModel/').test(data);
+};
+
+export const validateCompressedDrawioData = (data) =>  {
   try {
     let doc = new xmldoc.XmlDocument(data);
     let diagram = doc.valueWithPath('diagram');
